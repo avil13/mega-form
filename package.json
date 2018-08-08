@@ -16,7 +16,12 @@
         "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
         "babel-register": "^6.26.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/avil13/mega-form"
+    },
     "ava": {
+        "verbose": true,
         "babel": "inherit",
         "require": [
             "babel-register"
