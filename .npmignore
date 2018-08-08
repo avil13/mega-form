@@ -1,0 +1,5 @@
+test/
+img/
+.vscode/
+.editorconfig
+.eslintrc.js
