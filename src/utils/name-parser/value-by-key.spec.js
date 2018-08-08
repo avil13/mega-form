@@ -17,7 +17,7 @@ const mocks_good = {
     'name': 'Jon',
     'person.age': 27,
     'person.*': { age: 27 },
-    // '*.age': { age: 27 },
+    '*.age': { age: 27 },
     // 'list.*.value': [1, 2]
 };
 
@@ -26,7 +26,7 @@ const mocks_bad = {
     'person.x_age': null,
     'x_person.*': null,
     // 'person.*.age': 27,
-    // '*.age': 27,
+    '*.x_age': null,
     // 'list.*.value': 1
 };
 

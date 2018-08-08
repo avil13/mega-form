@@ -42,8 +42,15 @@ function findWithStar(value, keys) {
 
     if (keys.length) {
         // поиск после этого элемента будет продолжаться рекурсивно
-        forIt(value, (key, val, _is_array) => {
-            //
+        const current_key = keys[0];
+
+        forIt(value, (key, val) => {
+            forIt(val, (k, v, _is_array) => {
+                if (current_key == k) {
+                    is_array = _is_array;
+                    res_obj[k] = v;
+                }
+            });
         });
     } else {
         // возвращаем все элементы
@@ -56,6 +63,10 @@ function findWithStar(value, keys) {
                 res_obj[key] = val;
             }
         });
+    }
+
+    if (is_array === undefined) {
+        return undefined;
     }
 
     return is_array ? res_arr : res_obj;
