@@ -1,7 +1,9 @@
-import nameParser from './name-parser/name-parser';
+import valueByKey from './value-by-key/value-by-key';
+import forIt from './for-it/for-it';
 
 
 //
 export default {
-    nameParser
+    valueByKey,
+    forIt
 };
