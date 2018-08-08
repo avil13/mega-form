@@ -13,11 +13,15 @@ export default function(obj) {
 
 
 function parseDotted(obj, path) {
+    if (typeof obj !== 'object') {
+        return;
+    }
+
     const keys = path.split('.');
 
     let val = Object.assign({}, obj);
 
-    for (let i=0; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i++) {
         const k = keys[i];
 
         if (k === '*') {
@@ -37,27 +41,35 @@ function parseDotted(obj, path) {
 
 function findWithStar(value, keys) {
     let is_array;
-    let res_arr= [];
-    let res_obj= {};
+    let res_arr = [];
+    let res_obj = {};
+    let res;
 
     if (keys.length) {
         // поиск после этого элемента будет продолжаться рекурсивно
         const current_key = keys[0];
 
-        forIt(value, (key, val) => {
-            forIt(val, (k, v, _is_array) => {
-                if (current_key == k) {
-                    is_array = _is_array;
-                    res_obj[k] = v;
+        forIt(value, (key, val, is_arr) => {
+            const v = parseDotted(val, current_key);
+            if (v !== undefined) {
+                if (is_arr && val[current_key] !== undefined) {
+                    // 'list.*.value'
+                    is_array = is_arr;
+                    res_arr.push(val[current_key]);
+
+                } else
+                if (v === val[current_key]) {
+                    // '*.age'
+                    res = v;
                 }
-            });
+            }
         });
     } else {
         // возвращаем все элементы
-        forIt(value, (key, val, _is_array) => {
-            is_array = _is_array;
+        forIt(value, (key, val, is_arr) => {
+            is_array = is_arr;
 
-            if (_is_array) {
+            if (is_arr) {
                 res_arr.push(val);
             } else {
                 res_obj[key] = val;
@@ -65,8 +77,9 @@ function findWithStar(value, keys) {
         });
     }
 
+
     if (is_array === undefined) {
-        return undefined;
+        return res;
     }
 
     return is_array ? res_arr : res_obj;
