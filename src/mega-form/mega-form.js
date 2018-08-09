@@ -1,5 +1,3 @@
-/// <reference path="./mega-form.d.ts" />
-//@ts-check
 /**
  * Main class
  *
@@ -11,3 +9,4 @@ export default class MegaForm {
         // }, (options || {}));
     }
 }
+

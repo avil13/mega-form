@@ -1,6 +1,6 @@
 
-export interface MegaForm {
-    (options: iMegaForm.Options): void;
+declare class MegaForm {
+    constructor(options: iMegaForm.Options);
     inputs(obj: iMegaForm.Options['inputs']): MegaForm;
     rules(obj: iMegaForm.Options['rules']): MegaForm;
     message(obj: iMegaForm.Options['message']): MegaForm;
@@ -12,7 +12,7 @@ export interface MegaForm {
 }
 
 
-export declare namespace iMegaForm {
+declare namespace iMegaForm {
     interface Options {
         inputs: Inputs;
         rules: Rules;
@@ -28,12 +28,12 @@ export declare namespace iMegaForm {
     }
     interface Message {
         [element_path: string]: string;
-     }
+    }
     interface Attributes {
         [attribute: string]: string;
     }
 
-    interface Errors {}
+    interface Errors { }
 
     interface Subscriber {
         (valid: boolean, data: any, errors: Errors): void

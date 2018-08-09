@@ -2,8 +2,8 @@
     "name": "mega-form",
     "version": "0.0.1",
     "description": "",
-    "main": "./src/mega-form/mega-form.js",
-    "types": "./src/mega-form/mega-form.d.ts",
+    "main": "src/mega-form/mega-form.js",
+    "types": "src/mega-form/mega-form.d.ts",
     "scripts": {
         "test": "ava",
         "test:watch": "ava --watch"
